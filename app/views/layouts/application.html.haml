@@ -1,0 +1,67 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "TheCatch"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "header_includes"
+
+  %body
+    .navbar.navbar-default.navbar-fixed-top
+      .navbar-inner
+        .navbar-header
+          %button.navbar-toggle(data-target=".nav-collapse" data-toggle="collapse")
+            .sr-only Toggle Navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand(href="/")
+            = image_tag 'logo.png', class: "logo"
+            The Catch
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            - if user_signed_in?
+              - if current_user.is_female
+                %li= link_to "Invite A Gentleman", invite_path()
+              %li= link_to "Edit Profile", edit_user_path(current_user)
+              %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+            - else
+              %li= link_to "Join", "/users/sign_up"
+              %li= link_to "Log In", "/users/sign_in"
+
+    .container
+      .row
+        #content.col-md-12
+          - flash.each do |key, value|
+            = content_tag(:div, value, class: "alert alert-#{key}")
+          = yield
+
+
+
+    .navbar.navbar-fixed-bottom
+      .navbar-inner
+        .navbar-header
+          .container
+            %footer
+              %p &copy; Date The Catch 2014
+
+    = yield :extra_javascripts
+
+    :javascript
+      window.App = (window.App || {});
+      window.App.Current = #{render(:file => 'user/current_user.json.rabl')};
+
+    - # Starts the app, goes last.
+    = javascript_include_tag "application"
+

@@ -1,0 +1,2 @@
+%h3= @message
+%button.btn.btn-primary.js-close Close
