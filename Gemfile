@@ -81,8 +81,6 @@ gem 'make_resourceful'
 
 gem 'has-bit-field'
 
-gem 'analytics-ruby', '<1.0'
-
 gem 'rabl'
 gem 'oj'
 
