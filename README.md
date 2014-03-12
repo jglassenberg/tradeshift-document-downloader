@@ -32,7 +32,7 @@ Rails is magical already, and this package preloads the default Rails 4 setup wi
     - [Mocha](https://github.com/quartzmo/mocha_rails) for stubbing and expectations.
     - [FactoryGirl] for factories instead of fixtures. 
         - TODO: All fixtures have been deleted, but maybe modify generators to not create new ones for new models? 
-        - * Custom callback skipper for skipping before_/after_/save/create callbacks.
+        - * Custom callback skipper for skipping before_/after_/save/create callbacks. *
 5. Vendored Ruby Tools
     - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background worker queue.
     - [Devise](https://github.com/plataformatec/devise) for user authentication.
