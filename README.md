@@ -10,10 +10,10 @@ Rails is magical already, and this package preloads the default Rails 4 setup wi
 2. Tweaks for Heroku support
     - [12factor gem](https://github.com/heroku/rails_12factor) for Build/Deploy support.
     - Sqlite database in development (writes to file), PG for production. 
-    - * Support for Devise/Heroku/Rails4 that doesn't require you to commit compiled assets to git before pushing. *
+    - * Support for Devise/Heroku/Rails4 that doesn't require you to commit compiled assets to git before pushing.
 3. Syntactical sugar
     - [HAML](https://github.com/indirect/haml-rails) for lean HTML templates.
-    - * [HAMLC / Haml-Coffee-Assets](https://github.com/netzpirat/haml_coffee_assets) for HAML-based templates (via JST) in Javascript support. *
+    - * [HAMLC / Haml-Coffee-Assets](https://github.com/netzpirat/haml_coffee_assets) for HAML-based templates (via JST) in Javascript support.
     - [SASS](https://github.com/rails/sass-rails) for lean stylesheets and mixin support.
     - [Coffeescript](https://github.com/rails/coffee-rails) for lean javascript.
     - [Squeel gem](https://github.com/activerecord-hackery/squeel) for fancy ActiveRecord syntax.
@@ -32,7 +32,7 @@ Rails is magical already, and this package preloads the default Rails 4 setup wi
     - [Mocha](https://github.com/quartzmo/mocha_rails) for stubbing and expectations.
     - [FactoryGirl] for factories instead of fixtures. 
         - TODO: All fixtures have been deleted, but maybe modify generators to not create new ones for new models? 
-        - * Custom callback skipper for skipping before_/after_/save/create callbacks. *
+        - * Custom callback skipper for skipping before_/after_/save/create callbacks.
 5. Vendored Ruby Tools
     - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background worker queue.
     - [Devise](https://github.com/plataformatec/devise) for user authentication.
