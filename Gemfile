@@ -51,6 +51,9 @@ end
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'callback_skipper'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password

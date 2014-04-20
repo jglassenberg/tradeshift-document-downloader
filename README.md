@@ -49,3 +49,9 @@ Rails is magical already, and this package preloads the default Rails 4 setup wi
     - [ActiveAdmin](https://github.com/gregbell/active_admin) adds support for backend admin panel.
 
 
+* Custom Things
+- vendor/assets/javascript/view_helpers.js.coffee
+- assets/javscript/application.js.coffee
+    - Backbone includes
+    - init.js
+    - B
