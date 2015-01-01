@@ -14,7 +14,7 @@ Rails is magical already, and this package preloads the default Rails 4 setup wi
 
     config.secret_key = 'd2b22...'
     
-3. 
+3. Create your heroku app, and push. 
 
 # Ingredients
 
