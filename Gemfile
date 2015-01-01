@@ -70,10 +70,6 @@ end
 
 gem 'delayed_job_active_record'
 
-gem 'devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
-
 gem 'haml-rails'
 gem 'haml_coffee_assets'
 gem 'execjs'
@@ -82,14 +78,14 @@ gem 'bootstrap-sass', '~> 3.1.0'
 
 gem 'make_resourceful'
 
-gem 'has-bit-field'
+#gem 'has-bit-field'
 
 gem 'rabl'
 gem 'oj'
 
 # Paperclip with the aws sdk
-gem "paperclip", "~> 3.0"
-gem 'aws-sdk'
+#gem "paperclip", "~> 3.0"
+#gem 'aws-sdk'
 
 gem 'rails_config'
 gem 'backbone-rails'
@@ -97,8 +93,6 @@ gem 'fancybox2-rails', '~> 0.2.4'
 gem 'font-awesome-rails'
 gem 'chosen-rails'
 
-gem 'rqrcode'
-
-gem 'activeadmin', github: 'gregbell/active_admin'
+#gem 'rqrcode'
 
 gem 'quiet_assets'

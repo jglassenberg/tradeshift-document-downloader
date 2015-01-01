@@ -14,16 +14,13 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
-  
+
   def expect_trigger_message(who, event_name, times=1)
     Analytics.expects(:track).times(times).with(event_name, anything)
     Analytics.expects(:identfiy).with(who, 'trigger_message_new_question', anything)
   end
 end
 
-class ActionController::TestCase
-  include Devise::TestHelpers  
-end
 
 # Runs assert_difference with a number of conditions and varying difference
 # counts.
