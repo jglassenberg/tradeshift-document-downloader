@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302170025) do
+ActiveRecord::Schema.define(version: 20150101212420) do
+
+  create_table "companies", force: true do |t|
+    t.datetime "docs_last_updated_at"
+    t.string   "ts_account_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -29,17 +37,36 @@ ActiveRecord::Schema.define(version: 20140302170025) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+  create_table "documents", force: true do |t|
+    t.integer  "company_id"
+    t.string   "ts_doc_id"
+    t.datetime "last_activity_at"
+    t.string   "sender_name"
+    t.string   "receiver_name"
+    t.string   "type"
+    t.datetime "issue_date"
+    t.string   "status"
+    t.decimal  "amount_before_tax"
+    t.decimal  "tax"
+    t.string   "currency"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "documents", ["company_id"], name: "index_documents_on_company_id"
+
+  create_table "users", force: true do |t|
+    t.integer  "company_id"
+    t.string   "ts_acount_id"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "last_login_at"
+    t.string   "oauth_token"
+    t.string   "oauth_secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["company_id"], name: "index_users_on_company_id"
 
 end
