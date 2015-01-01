@@ -1,6 +1,8 @@
 # This class is our interface with the TS api.
 
 class Tradeshift
+    include HTTParty
+
     def initialize(access_token, env='live')
         @env = 'live'
         @access_token = access_token
