@@ -93,6 +93,4 @@ gem 'fancybox2-rails', '~> 0.2.4'
 gem 'font-awesome-rails'
 gem 'chosen-rails'
 
-#gem 'rqrcode'
-
 gem 'quiet_assets'
