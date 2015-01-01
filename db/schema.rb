@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101212420) do
+ActiveRecord::Schema.define(version: 20150101230336) do
 
   create_table "companies", force: true do |t|
     t.datetime "docs_last_updated_at"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150101212420) do
     t.string   "currency"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sent_or_received"
   end
 
   add_index "documents", ["company_id"], name: "index_documents_on_company_id"
