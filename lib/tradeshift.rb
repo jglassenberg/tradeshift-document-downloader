@@ -1,9 +1,9 @@
 # This class is our interface with the TS api.
 
 class Tradeshift
-    def initialize(user, env='live')
+    def initialize(access_token, env='live')
         @env = 'live'
-        @user = user
+        @access_token = access_token
         # Do some auth / save the necessary tokens
         # to make auth'd requests with this instance.
     end
