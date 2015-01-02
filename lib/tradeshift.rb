@@ -2,9 +2,10 @@
 
 class Tradeshift
 
-    def initialize(access_token, env='live')
+    def initialize(access_token, company_account_id, env='live')
         @env = 'live'
         @access_token = access_token
+        @tenant_id    = company_account_id
         # Do some auth / save the necessary tokens
         # to make auth'd requests with this instance.
     end
@@ -18,7 +19,7 @@ class Tradeshift
         response = HTTParty.get(
         	'https://api.tradeshift.com/tradeshift/rest/external/documents/',
         	headers: {
-    	    		'X-Tradeshift-TenantId' => company_account_id,
+    	    		'X-Tradeshift-TenantId' => @tenant_id,
     	    		'Accept' => 'application/json',
     	    		'User-Agent' => 'TradeshiftDocumentsDownload/0.1',
     	    		'Authorization' => "Bearer #@accessToken"
@@ -34,17 +35,20 @@ class Tradeshift
         #get the length of the app
         numpages = parsed["numPages"]
 
+        puts "GOT SOME DOCS. GETTING #{numpages} more pages"
+
         #We can change this easily, but keep the items per page to 25 for now (the default)
         itemsperpage = 25
 
         # loop through until you have all content.  If there was only one page, this doesn't execute.
         (numPages - 1).times do |i|
+            puts "Extra page #{i}"
     	    #Call API with the page #i
     	    #TODO: this call may require filters based on the customer's specifications
     	    response = HTTParty.get(
     	    	"https://api.tradeshift.com/tradeshift/rest/external/documents/?page=#{i}&limit=#{itemsperpage}",
     	    	headers: {
-    	    		'X-Tradeshift-TenantId' => company_account_id,
+    	    		'X-Tradeshift-TenantId' => @tenant_id,
     	    		'Accept' => 'application/json',
     	    		'User-Agent' => 'TradeshiftDocumentsDownload/0.1',
     	    		'Authorization' => "Bearer #@accessToken"
@@ -65,6 +69,8 @@ class Tradeshift
         # Issue date: results[item_number]["ItemInfos"][ItemInfos_number] - where .type = "document.issuedate"
         # Amount: results[item_number]["ItemInfos"][ItemInfos_number] - where .type = "document.total"
         # Currency: results[item_number]["ItemInfos"][ItemInfos_number] - where .type = "document.currency"
+
+        puts "SHITYEA", results
 
         return results
     end

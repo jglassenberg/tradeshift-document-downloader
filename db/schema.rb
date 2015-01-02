@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150101230336) do
+ActiveRecord::Schema.define(version: 20150102064057) do
 
   create_table "companies", force: true do |t|
     t.datetime "docs_last_updated_at"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150101230336) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "access_token"
   end
 
   create_table "delayed_jobs", force: true do |t|

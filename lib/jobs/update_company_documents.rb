@@ -1,7 +1,9 @@
 class Jobs::UpdateCompanyDocuments
     class << self
         def run(ts, company)
-            live_docs = ts.documents_list_for_company(company.ts_account_id)
+            puts "Getting docs for ", company
+
+            live_docs = ts.documents_list_for_company()
 
             # Update documents with new data
             live_docs.each do |doc|
