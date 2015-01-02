@@ -4,17 +4,12 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "TheCatch"
+    %title= content_for?(:title) ? yield(:title) : "Tradeshift"
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
     = stylesheet_link_tag "application", :media => "all"
-    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
-    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
-    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
-    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
-    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "header_includes"
 
   %body
@@ -27,18 +22,10 @@
             %span.icon-bar
             %span.icon-bar
           %a.navbar-brand(href="/")
-            = image_tag 'logo.png', class: "logo"
-            The Catch
+            Tradeshift
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
-            - if user_signed_in?
-              - if current_user.is_female
-                %li= link_to "Invite A Gentleman", invite_path()
-              %li= link_to "Edit Profile", edit_user_path(current_user)
-              %li= link_to "Sign Out", destroy_user_session_path, method: :delete
-            - else
-              %li= link_to "Join", "/users/sign_up"
-              %li= link_to "Log In", "/users/sign_in"
+
 
     .container
       .row
@@ -54,7 +41,7 @@
         .navbar-header
           .container
             %footer
-              %p &copy; Date The Catch 2014
+              %p &copy; Tradeshift 2015
 
     = yield :extra_javascripts
 
