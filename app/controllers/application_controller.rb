@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     render :json => {:response_type => "ERROR", :response_code => code, :message => message}, :status => status
   end
 
+  after_action :allow_iframe
+  private
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
+
 end
