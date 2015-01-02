@@ -29,8 +29,9 @@ class Tradeshift
         parsed = JSON.parse(response)
 
         #Store all of the documents in an array.  It will be an array of pages, 25 items long.
-        results = Array.new()
-        results.push(parsed["Document"])
+        #results = Array.new()
+        #results.push(parsed["Document"])
+        results = parsed["Document"]
 
         #get the length of the app
         numpages = parsed["numPages"]
@@ -53,19 +54,20 @@ class Tradeshift
     	    )
 
 	    parsed = JSON.parse(response)
-	    results.push(parsed["Document"])
+	    #results.push(parsed["Document"])
+	    results += parsed["Document"]
         end
         
         #How to obtain data:
-        # Document ID: results[page_number{0...length}][item_number{0...24}]["ID"]
-        # Document type: results[page_number{0...length}][item_number{0...24}]["DocumentType"]["type"]
-        # Document status: results[page_number{0...length}][item_number{0...24}]["State"]
+        # Document ID: results[item_number]["ID"]
+        # Document type: results[item_number]["DocumentType"]["type"]
+        # Document status: results[item_number]["State"]
         # Sent or received - whether "SenderCompanyName" or "ReceiverCompanyName" exists.
-        # Sender full name (for received documents): results[page_number{0...length}][item_number{0...24}]["SenderCompanyName"]
-        # Receiver full name (for documents you sent): results[page_number{0...length}][item_number{0...24}]["ReceiverCompanyName"]
-        # Issue date: results[page_number{0...length}][item_number{0...24}]["ItemInfos"][{0...length}] - where .type = "document.issuedate"
-        # Amount: results[page_number{0...length}][item_number{0...24}]["ItemInfos"][{0...length}] - where .type = "document.total"
-        # Currency: results[page_number{0...length}][item_number{0...24}]["ItemInfos"][{0...length}] - where .type = "document.currency"
+        # Sender full name (for received documents): results[item_number]["SenderCompanyName"]
+        # Receiver full name (for documents you sent): results[item_number]["ReceiverCompanyName"]
+        # Issue date: results[item_number]["ItemInfos"][ItemInfos_number] - where .type = "document.issuedate"
+        # Amount: results[item_number]["ItemInfos"][ItemInfos_number] - where .type = "document.total"
+        # Currency: results[item_number]["ItemInfos"][ItemInfos_number] - where .type = "document.currency"
 
         return results
     end
