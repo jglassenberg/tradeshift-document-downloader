@@ -31,4 +31,14 @@ TheCatch::Application.configure do
   # number of complex assets.
   config.assets.debug = false
 
+  ActionMailer::Base.smtp_settings = {
+    :user_name => 'tradeshift',
+    :password => ENV['SG_PASSWORD'],
+    :domain => 'tradeshift.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
 end

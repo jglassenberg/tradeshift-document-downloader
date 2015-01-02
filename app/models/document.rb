@@ -2,6 +2,10 @@ class Document < ActiveRecord::Base
     belongs_to :company
     self.inheritance_column = nil
 
+    def total
+       amount_before_tax - tax
+    end
+
     def self.create_from_company_and_response(company, resp)
         if resp['SenderCompanyName']
             sent_or_received = 'received'
@@ -25,6 +29,16 @@ class Document < ActiveRecord::Base
             #status: resp['UnifiedState'],
             amount_before_tax: DocumentHelper.item_info_value(resp, 'document.total'),
             currency: DocumentHelper.item_info_value(resp, 'document.currency')
-            })
+        })
+    end
+
+    def update_from_response(resp)
+        live_latest = Time.parse(resp['LatestDispatch']['Created'])
+
+        update_attributes!({
+            last_activity_at: live_latest,
+            amount_before_tax: DocumentHelper.item_info_value(resp, 'document.total'),
+            currency: DocumentHelper.item_info_value(resp, 'document.currency')
+        }) if live_latest > last_activity_at
     end
 end
