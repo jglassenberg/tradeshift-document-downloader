@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
 
   def index
-    @documents = current_user.company.documents
+    @documents = User.first.company.documents
   end
 
   private

@@ -75,6 +75,7 @@ gem 'haml_coffee_assets'
 gem 'execjs'
 
 gem 'bootstrap-sass', '~> 3.1.0'
+gem 'bootstrap-generators', '~> 3.3.1'
 
 gem 'make_resourceful'
 
@@ -94,3 +95,5 @@ gem 'font-awesome-rails'
 gem 'chosen-rails'
 
 gem 'quiet_assets'
+
+gem 'httparty'

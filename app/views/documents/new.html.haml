@@ -1,5 +1,7 @@
-%h1 New document
+.page-header
+  = link_to documents_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  %h1 New document
 
 = render 'form'
-
-= link_to 'Back', documents_path

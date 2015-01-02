@@ -1,7 +1,10 @@
-%h1 Editing document
+.page-header
+  = link_to documents_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to @document, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Show
+  %h1 Editing document
 
 = render 'form'
-
-= link_to 'Show', @document
-\|
-= link_to 'Back', documents_path
