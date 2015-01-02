@@ -7,7 +7,7 @@ class Company < ActiveRecord::Base
   def access_token
     token = users.where{oauth_token!=nil}.first.try(:oauth_token)
 
-    raise "Company has no access token!" in token.nil?
+    raise "Company has no access token!" if token.nil?
 
     token
   end
