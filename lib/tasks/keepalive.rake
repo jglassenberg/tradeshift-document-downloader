@@ -4,8 +4,8 @@ namespace :app do
   task :keepalive => :environment do
     require "net/http"
     require "uri"
-    
-    uri = URI.parse('http://example.com')
+
+    uri = URI.parse('http://tradeshift-document-downloader.herokuapp.com')
     Net::HTTP.get_response(uri)
   end
 
