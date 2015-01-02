@@ -55,6 +55,18 @@ class Tradeshift
 	    parsed = JSON.parse(response)
 	    results.push(parsed["Document"])
         end
+        
+        #How to obtain data:
+        # Document ID: results[page_number{0...length}][item_number{0...24}]["ID"]
+        # Document type: results[page_number{0...length}][item_number{0...24}]["DocumentType"]["type"]
+        # Document status: results[page_number{0...length}][item_number{0...24}]["State"]
+        # Sent or received - whether "SenderCompanyName" or "ReceiverCompanyName" exists.
+        # Sender full name (for received documents): results[page_number{0...length}][item_number{0...24}]["SenderCompanyName"]
+        # Receiver full name (for documents you sent): results[page_number{0...length}][item_number{0...24}]["ReceiverCompanyName"]
+        # Issue date: results[page_number{0...length}][item_number{0...24}]["ItemInfos"][{0...length}] - where .type = "document.issuedate"
+        # Amount: results[page_number{0...length}][item_number{0...24}]["ItemInfos"][{0...length}] - where .type = "document.total"
+        # Currency: results[page_number{0...length}][item_number{0...24}]["ItemInfos"][{0...length}] - where .type = "document.currency"
+
         return results
     end
 end
