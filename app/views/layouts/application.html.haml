@@ -6,7 +6,7 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     %meta{:content => "Tradeshift Document Downloader", :name => "description"}
     %meta{:content => "Jordan Feldstein <jfe@tradeshift.com>", :name => "author"}
-    = javascript_include_tag "header_includes"
+
     %title Tradeshift Document Downloader
 
     / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -15,6 +15,7 @@
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    = javascript_include_tag "header_includes"
   %body
     %nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
       .container
@@ -26,8 +27,6 @@
             %span.icon-bar
           = link_to "Document Downloader", "#", :class => "navbar-brand"
         #navbar.collapse.navbar-collapse
-          = form_tag html: {class: 'navbar-form navbar-left'} do |f|
-            .form-group= select_tag :type_eq, options_for_doc_types
           %ul.nav.navbar-nav.navbar-right
             %li
               %form.navbar-form

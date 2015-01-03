@@ -1,5 +1,14 @@
-.page-header
-  %h1 Listing documents
+= form_tag html: {class: 'navbar-form navbar-left'} do |f|
+  %fieldset
+    %legend Filters
+
+    .form-group.col-xs-6
+      = label_tag :type_eq, "Document Type"
+      = select_tag :type_eq, options_for_doc_types, class: 'form-control'
+
+    .form-group.col-xs-6
+      = label_tag :sender_or_receiver_eq, "Sent Or Received"
+      = select_tag :sender_or_receiver_eq, options_for_doc_roles, class: 'form-control'
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
@@ -14,3 +23,8 @@
         %tr
           - Settings.documents.public_columns.each do |col|
             %td= doc.send(col)
+
+= content_for :extra_javascripts do
+  :coffeescript
+    $('form select').change (e) ->
+      $(@).parent('form').submit()

@@ -11,6 +11,11 @@ module ApplicationHelper
         options_for_select opts
     end
 
+    def options_for_doc_roles
+        opts = [['Either', ''], ['Sent', 'sender'], ['Received', 'receiver']]
+        options_for_select opts
+    end
+
     def tradeshift_error!
         # TODO Airbrake
         return redirect_to root_url, flash: {error: "Trouble connecting to Tradeshift!"}
