@@ -56,6 +56,8 @@ class HomeController < ApplicationController
     cdata = JSON.parse resp.body
 
     company = Company.create_from_tradeshift_response cdata
+    company.access_token = access_token
+    company.save!
 
     session['company_id'] = company.id
 
