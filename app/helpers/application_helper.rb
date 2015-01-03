@@ -5,9 +5,15 @@ module ApplicationHelper
         end
     end
 
+    def options_for_doc_types
+        opts = [['All', '']]
+        opts += Settings.documents.types.map {|t| [t.label, t.api_value] }
+        options_for_select opts
+    end
+
     def tradeshift_error!
         # TODO Airbrake
-        return redirect_to root_url, flash: {warning: "Trouble connecting to Tradeshift!"}
+        return redirect_to root_url, flash: {error: "Trouble connecting to Tradeshift!"}
     end
 
     def tradeshift_oauth_login_url

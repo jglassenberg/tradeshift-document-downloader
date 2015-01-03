@@ -5,11 +5,12 @@
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th
-        %th
-        %th
+        - Settings.documents.public_columns.each do |col|
+          %td
+            = col.to_s.humanize
 
     %tbody
-      - @documents.each do |document|
+      - @documents.each do |doc|
         %tr
-          %td= document
+          - Settings.documents.public_columns.each do |col|
+            %td= doc.send(col)

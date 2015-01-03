@@ -1,3 +1,16 @@
-# games:
-#   num_gentlemen: 4
-#   required_num_questions: 3
+documents:
+    public_columns:
+        - :ts_doc_id
+        - :sender_name
+        - :receiver_name
+        - :type
+        - :issue_date
+    types:
+        - label: Invoices
+          api_value: invoice
+        - label: Credit Notes
+          api_value: credit_note
+        - label: Purchase Orders
+          api_value: purchase_order
+        - label: Quotes
+          api_value: quote

@@ -84,6 +84,8 @@ gem 'make_resourceful'
 gem 'rabl'
 gem 'oj'
 
+gem 'render_csv'
+
 # Paperclip with the aws sdk
 #gem "paperclip", "~> 3.0"
 #gem 'aws-sdk'

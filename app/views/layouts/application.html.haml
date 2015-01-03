@@ -26,10 +26,12 @@
             %span.icon-bar
           = link_to "Document Downloader", "#", :class => "navbar-brand"
         #navbar.collapse.navbar-collapse
+          = form_tag html: {class: 'navbar-form navbar-left'} do |f|
+            .form-group= select_tag :type_eq, options_for_doc_types
           %ul.nav.navbar-nav.navbar-right
             %li
               %form.navbar-form
-                %button.btn.btn-default#js-download{type:'button'} Download
+                = link_to "Download These #{@documents.length} Docs", {format: 'csv'}, class: 'btn btn-default'
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", :role => "alert" do
