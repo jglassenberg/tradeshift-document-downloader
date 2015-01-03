@@ -1,14 +1,14 @@
-= form_tag html: {class: 'navbar-form navbar-left'} do |f|
+= search_form_for @q do |f|
   %fieldset
     %legend Filters
 
     .form-group.col-xs-6
-      = label_tag :type_eq, "Document Type"
-      = select_tag :type_eq, options_for_doc_types, class: 'form-control'
+      = f.label :type_eq, "Document Type"
+      = f.select :type_eq, options_for_doc_types(params[:q][:type_eq]), class: 'form-control'
 
     .form-group.col-xs-6
-      = label_tag :sender_or_receiver_eq, "Sent Or Received"
-      = select_tag :sender_or_receiver_eq, options_for_doc_roles, class: 'form-control'
+      = f.label :sender_receiver_eq, "Sent Or Received"
+      = f.select :sender_receiver_eq, options_for_doc_roles(params[:q][:sender_receiver_eq]), class: 'form-control'
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
@@ -16,7 +16,7 @@
       %tr
         - Settings.documents.public_columns.each do |col|
           %td
-            = col.to_s.humanize
+            = sort_link @q, col
 
     %tbody
       - @documents.each do |doc|
@@ -27,4 +27,4 @@
 = content_for :extra_javascripts do
   :coffeescript
     $('form select').change (e) ->
-      $(@).parent('form').submit()
+      $(@).parents('form').submit()

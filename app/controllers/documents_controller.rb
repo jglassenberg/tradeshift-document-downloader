@@ -2,7 +2,12 @@ class DocumentsController < ApplicationController
   before_filter :ensure_company
 
   def index
-    @documents = current_company.documents
+    cond = params[:q]
+    cond ||= {}
+    cond[:company_id_eq] = current_company.id
+
+    @q = Document.search(cond)
+    @documents = @q.result
 
     respond_to do |format|
       format.html {}

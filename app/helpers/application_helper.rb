@@ -5,15 +5,15 @@ module ApplicationHelper
         end
     end
 
-    def options_for_doc_types
+    def options_for_doc_types(selected=nil)
         opts = [['All', '']]
         opts += Settings.documents.types.map {|t| [t.label, t.api_value] }
-        options_for_select opts
+        options_for_select opts, selected
     end
 
-    def options_for_doc_roles
+    def options_for_doc_roles(selected=nil)
         opts = [['Either', ''], ['Sent', 'sender'], ['Received', 'receiver']]
-        options_for_select opts
+        options_for_select opts, selected
     end
 
     def tradeshift_error!

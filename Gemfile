@@ -12,7 +12,10 @@ end
 group :production do
   gem 'pg'
 end
+
+#Searching
 gem 'squeel'
+gem 'ransack'
 
 gem 'rails_12factor', group: :production
 
