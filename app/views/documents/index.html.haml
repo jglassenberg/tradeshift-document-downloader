@@ -7,8 +7,8 @@
       = f.select :type_eq, options_for_doc_types(params[:q][:type_eq]), {}, class: 'form-control'
 
     .form-group.col-xs-6
-      = f.label :sender_receiver_eq, "Sent Or Received"
-      = f.select :sender_receiver_eq, options_for_doc_roles(params[:q][:sender_receiver_eq]), {}, class: 'form-control'
+      = f.label :sent_received_eq, "Sent Or Received"
+      = f.select :sent_received_eq, options_for_doc_roles(params[:q][:sent_received_eq]), {}, class: 'form-control'
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover

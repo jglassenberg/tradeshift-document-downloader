@@ -8,18 +8,18 @@ class Document < ActiveRecord::Base
 
     def self.create_from_company_and_response(company, resp)
         if resp['SenderCompanyName']
-            sender_receiver = 'received'
+            sent_received = 'received'
             sender_name = resp['SenderCompanyName']
             receiver_name = company.name
         else
-            sender_receiver = 'sent'
+            sent_received = 'sent'
             sender_name = company.name
             receiver_name = resp['ReceiverCompanyName']
         end
 
         create!({
             company_id: company.id,
-            sender_receiver: sender_receiver,
+            sent_received: sent_received,
             ts_doc_id:  resp['DocumentId'],
             last_activity_at: Time.parse(resp['LatestDispatch']['Created']),
             sender_name: sender_name,

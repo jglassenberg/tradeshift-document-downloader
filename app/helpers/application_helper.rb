@@ -12,7 +12,7 @@ module ApplicationHelper
     end
 
     def options_for_doc_roles(selected=nil)
-        opts = [['Either', ''], ['Sent', 'sender'], ['Received', 'receiver']]
+        opts = [['Either', ''], ['Sent', 'sent'], ['Received', 'received']]
         options_for_select opts, selected
     end
 

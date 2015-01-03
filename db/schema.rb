@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150103014457) do
     t.string   "currency"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sender_receiver"
+    t.string   "sent_received"
   end
 
   add_index "documents", ["company_id"], name: "index_documents_on_company_id"
