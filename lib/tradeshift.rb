@@ -24,9 +24,12 @@ class Tradeshift
 		puts "token"
 		puts "#{@access_token}"
 
+#We can change this easily, but keep the items per page to 25 for now (the default)
+        itemsperpage = 25
+
         # call API to find out how many docs are in the list
         response = HTTParty.get(
-        	"#{ENV['API_HOST_URL']}/tradeshift/rest/external/documents/",
+        	"#{ENV['API_HOST_URL']}/tradeshift/rest/external/documents/?page=0&limit=#{itemsperpage}",
         	headers: {
     	    		'X-Tradeshift-TenantId' => @tenant_id,
     	    		'Accept' => 'application/json',
@@ -34,22 +37,21 @@ class Tradeshift
     	    		'Authorization' => "Bearer #{@access_token}"
     	    	}
         )
-       # puts "#{response}"
-       ### TODO: this line is causing the next error
+       
+        #puts "#{response}"
         parsed = JSON.parse(response.body)
-	#puts "#{parsed}"
+		#puts "#{parsed}"
+        
         #Store all of the documents in an array.  It will be an array of pages, 25 items long.
         #results = Array.new()
         #results.push(parsed["Document"])
         results = parsed["Document"]
-	#puts "#{results}"
+		#puts "#{results}"
         #get the length of the app
         numpages = parsed["numPages"]
 
         puts "GOT SOME DOCS. GETTING #{numpages} more pages"
-
-        #We can change this easily, but keep the items per page to 25 for now (the default)
-        itemsperpage = 25
+ 
 
         # loop through until you have all content.  If there was only one page, this doesn't execute.
         (numpages - 1).times do |i|
@@ -57,7 +59,7 @@ class Tradeshift
     	    #Call API with the page #i
     	    #TODO: this call may require filters based on the customer's specifications
     	    response = HTTParty.get(
-    	    	"#{ENV['API_HOST_URL']}/tradeshift/rest/external/documents/?page=#{i}&limit=#{itemsperpage}",
+    	    	"#{ENV['API_HOST_URL']}/tradeshift/rest/external/documents/?page=#{i+1}&limit=#{itemsperpage}",
     	    	headers: {
     	    		'X-Tradeshift-TenantId' => @tenant_id,
     	    		'Accept' => 'application/json',
@@ -65,8 +67,8 @@ class Tradeshift
     	    		'Authorization' => "Bearer #{@access_token}"
     	    	}
     	    )
-
-            parsed = JSON.parse(response)
+			#puts "#{response}"
+            parsed = JSON.parse(response.body)
 	        results += parsed["Document"]
         end
 
