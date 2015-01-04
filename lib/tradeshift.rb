@@ -36,13 +36,13 @@ class Tradeshift
         )
        # puts "#{response}"
        ### TODO: this line is causing the next error
-        parsed = JSON.parse(response)
-	puts "#{parsed}"
+        parsed = JSON.parse(response.body)
+	#puts "#{parsed}"
         #Store all of the documents in an array.  It will be an array of pages, 25 items long.
         #results = Array.new()
         #results.push(parsed["Document"])
         results = parsed["Document"]
-	puts "#{documents}"
+	#puts "#{results}"
         #get the length of the app
         numpages = parsed["numPages"]
 
@@ -52,7 +52,7 @@ class Tradeshift
         itemsperpage = 25
 
         # loop through until you have all content.  If there was only one page, this doesn't execute.
-        (numPages - 1).times do |i|
+        (numpages - 1).times do |i|
             puts "Extra page #{i}"
     	    #Call API with the page #i
     	    #TODO: this call may require filters based on the customer's specifications
