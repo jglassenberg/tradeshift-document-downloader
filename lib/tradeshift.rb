@@ -6,6 +6,10 @@ class Tradeshift
         @env = 'live'
         @access_token = access_token
         @tenant_id    = company_account_id
+        puts "tenant1"
+        puts "#{@tenant_id}"
+        puts "token1"
+        puts "#{@access_token}"
         # Do some auth / save the necessary tokens
         # to make auth'd requests with this instance.
     end
@@ -15,23 +19,30 @@ class Tradeshift
     # notes: Get all the pages.
     def documents_list_for_company()
 
+		#puts "Tenant id:"
+		#puts "#{@tenant_id}"
+		puts "token"
+		puts "#{@access_token}"
+
         # call API to find out how many docs are in the list
         response = HTTParty.get(
-        	'https://api.tradeshift.com/tradeshift/rest/external/documents/',
+        	"#{ENV['API_HOST_URL']}/tradeshift/rest/external/documents/",
         	headers: {
     	    		'X-Tradeshift-TenantId' => @tenant_id,
     	    		'Accept' => 'application/json',
     	    		'User-Agent' => 'TradeshiftDocumentsDownload/0.1',
-    	    		'Authorization' => "Bearer #@accessToken"
+    	    		'Authorization' => "Bearer #{@access_token}"
     	    	}
         )
+       # puts "#{response}"
+       ### TODO: this line is causing the next error
         parsed = JSON.parse(response)
-
+	puts "#{parsed}"
         #Store all of the documents in an array.  It will be an array of pages, 25 items long.
         #results = Array.new()
         #results.push(parsed["Document"])
         results = parsed["Document"]
-
+	puts "#{documents}"
         #get the length of the app
         numpages = parsed["numPages"]
 
@@ -46,12 +57,12 @@ class Tradeshift
     	    #Call API with the page #i
     	    #TODO: this call may require filters based on the customer's specifications
     	    response = HTTParty.get(
-    	    	"https://api.tradeshift.com/tradeshift/rest/external/documents/?page=#{i}&limit=#{itemsperpage}",
+    	    	"#{ENV['API_HOST_URL']}/tradeshift/rest/external/documents/?page=#{i}&limit=#{itemsperpage}",
     	    	headers: {
     	    		'X-Tradeshift-TenantId' => @tenant_id,
     	    		'Accept' => 'application/json',
     	    		'User-Agent' => 'TradeshiftDocumentsDownload/0.1',
-    	    		'Authorization' => "Bearer #@accessToken"
+    	    		'Authorization' => "Bearer #{@access_token}"
     	    	}
     	    )
 
